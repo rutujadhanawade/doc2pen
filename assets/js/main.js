@@ -1,29 +1,30 @@
 // Navigation Bar Declaration
 let header = $(`
-  <nav id="navbar">
-  <div class="nav-wrapper">
-      <a href="#!" class="brand-logo"><img src="./assets/images/logo.png"></a>
-      <a href="#" data-target="mobile-demo" class="white-text sidenav-trigger"><i
-              class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-          <li><a class="white-text" href="index.html">Home</a></li>
-          <li><a class="white-text" href="#about-intro">About</a></li>
-          <li><a class="white-text" href="#team">Team</a></li>
-          <li><a class="white-text" href="#contact">Contact</a></li>
-          <li><a class="white-text" href="editor.html">Editor</a></li>
-
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-light nav1" style="z-index: 9999" id="navbar">
+  <a class="navbar-brand brand-logo" href="#"><img src="./assets/images/logo.png"></a>
+  <button class="navbar-toggler res-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <b><a class="nav-link text-white menu-one" href="index.html">Home</a></b>
+      </li>
+      <li class="nav-item active">
+        <b><a class="nav-link text-white" href="index.html#about-intro">About</a></b>
+      </li>
+      <li class="nav-item active">
+        <b><a class="nav-link text-white" href="index.html#team">Team</a></b>
+      </li>
+      <li class="nav-item active">
+        <b><a class="nav-link text-white" href="index.html#contact">Contact</a></b>
+      </li>
+      <li class="nav-item active">
+        <b><a class="nav-link text-white" href="editor.html">Editor</a></b>
+      </li>
+    </ul>
   </div>
-  </nav>
-  
-  <!--Side Nav Bar -->
-  <ul class="sidenav" id="mobile-demo">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="index.html">About</a></li>
-  <li><a href="#mentor-container">Team</a></li>
-  <li><a href="index.html">Contact</a></li>
-  <li><a href="index.html">Editor</a></li>
-  </ul>`);
+</nav>`);
 // Footer Declaration
 let footer = $(`
 <footer>
@@ -107,6 +108,53 @@ function ValidCaptcha() {
 function removeSpaces(string) {
   return string.split(" ").join("");
 }
+
+const projMaintainers = document.querySelector(".projectMaintainers");
+//Data for Project Maintainers
+const maintainerSection = [
+  {
+    image: "assets/images/smaranjit_ghose.png",
+    name: "Smaranjit Ghose",
+    title: "Lead Developer",
+    github: "./https://github.com/smaranjitghose",
+    linkedin: "https://www.linkedin.com/in/smaranjitghose/",
+    imgclass: "image-1"
+  },
+  {
+    image: "assets/images/anush_bhatia.png",
+    name: "Anush Bhatia",
+    title: "Lead Developer",
+    github: "https://github.com/anushbhatia",
+    linkedin: "https://www.linkedin.com/in/anushbhatia/",
+    imgclass: "image-2"
+  }
+];
+
+const maintainerInfo = () => {
+  let output = "";
+  maintainerSection.forEach(
+    ({ title, image, github, linkedin, name, imgclass}) =>
+      (output += `    
+      <div class="${imgclass} d-flex d-self-center ml-md-5">
+      <div class="profile-container">
+       <div class="profile-wrapper">
+         <div class="profile-card">
+          <img src="${image}" alt="profile pics"> 
+          <h4>${name}</h4>
+          <h5>${title}</h5>
+          <div class="icons">
+            <a href="${github}" class="fa fa-github"></a>
+            <a href="${linkedin}" class="fa fa-linkedin"></a>
+          </div> 
+         </div>
+        </div>
+      </div>
+      </div>
+    `)
+  );
+  projMaintainers.innerHTML = output;
+};
+document.addEventListener("DOMContentLoaded", maintainerInfo);
 
 
 const contributor = document.querySelector(".contributor");
@@ -234,8 +282,8 @@ const showCards = () => {
   contributorsection.forEach(
     ({ title, image, githublink }) =>
       (output += `       
-     <figure class="position-relative display-inline-block va-top text-center">
-      <img src="${image}" class="grid-wd-100 va-top">
+     <figure class="position-relative d-inline-block text-center ml-2 mb-4 grid-wd-100">
+      <img src="${image}" class="grid-wd-100">
        <figcaption class="position-absolute grid-wd-100 va-top pad font-small futura">
         <div class="text">${title} <a href="${githublink}" class="social-icon fa fa-github"></a></div>
        </figcaption>
